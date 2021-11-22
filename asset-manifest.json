@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/Tiles-Game/static/css/main.4589e5be.chunk.css",
+    "main.js": "/Tiles-Game/static/js/main.cd62cb00.chunk.js",
+    "main.js.map": "/Tiles-Game/static/js/main.cd62cb00.chunk.js.map",
+    "runtime-main.js": "/Tiles-Game/static/js/runtime-main.15f70b91.js",
+    "runtime-main.js.map": "/Tiles-Game/static/js/runtime-main.15f70b91.js.map",
+    "static/js/2.bc7b4ae8.chunk.js": "/Tiles-Game/static/js/2.bc7b4ae8.chunk.js",
+    "static/js/2.bc7b4ae8.chunk.js.map": "/Tiles-Game/static/js/2.bc7b4ae8.chunk.js.map",
+    "index.html": "/Tiles-Game/index.html",
+    "static/css/main.4589e5be.chunk.css.map": "/Tiles-Game/static/css/main.4589e5be.chunk.css.map",
+    "static/js/2.bc7b4ae8.chunk.js.LICENSE.txt": "/Tiles-Game/static/js/2.bc7b4ae8.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.15f70b91.js",
+    "static/js/2.bc7b4ae8.chunk.js",
+    "static/css/main.4589e5be.chunk.css",
+    "static/js/main.cd62cb00.chunk.js"
+  ]
+}
