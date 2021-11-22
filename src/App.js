@@ -3,22 +3,22 @@ import './App.css';
 import Tile from './Tile';
 
 const tiles = [
-  { id: 1, color: '#df0b00', status: 'hidden' },
-  { id: 2, color: '#df0b00', status: 'hidden' },
-  { id: 3, color: '#e76801', status: 'hidden' },
-  { id: 4, color: '#e76801', status: 'hidden' },
-  { id: 5, color: '#ffd231', status: 'hidden' },
-  { id: 6, color: '#ffd231', status: 'hidden' },
-  { id: 7, color: '#008127', status: 'hidden' },
-  { id: 8, color: '#008127', status: 'hidden' },
-  { id: 9, color: '#67c9d6', status: 'hidden' },
-  { id: 10, color: '#67c9d6', status: 'hidden' },
-  { id: 11, color: '#004c94', status: 'hidden' },
-  { id: 12, color: '#004c94', status: 'hidden' },
-  { id: 13, color: '#601f93', status: 'hidden' },
-  { id: 14, color: '#601f93', status: 'hidden' },
-  { id: 15, color: '#a01280', status: 'hidden' },
-  { id: 16, color: '#a01280', status: 'hidden' },
+  { id: 1, color: 'color1', status: 'hidden' },
+  { id: 2, color: 'color1', status: 'hidden' },
+  { id: 3, color: 'color2', status: 'hidden' },
+  { id: 4, color: 'color2', status: 'hidden' },
+  { id: 5, color: 'color3', status: 'hidden' },
+  { id: 6, color: 'color3', status: 'hidden' },
+  { id: 7, color: 'color4', status: 'hidden' },
+  { id: 8, color: 'color4', status: 'hidden' },
+  { id: 9, color: 'color5', status: 'hidden' },
+  { id: 10, color: 'color5', status: 'hidden' },
+  { id: 11, color: 'color6', status: 'hidden' },
+  { id: 12, color: 'color6', status: 'hidden' },
+  { id: 13, color: 'color7', status: 'hidden' },
+  { id: 14, color: 'color7', status: 'hidden' },
+  { id: 15, color: 'color8', status: 'hidden' },
+  { id: 16, color: 'color8', status: 'hidden' },
 ];
 
 const shuffle = (tiles) => {
@@ -44,7 +44,7 @@ const reducer = (state, action) => {
     case 'CHECK-TILE':
       cloneState.tiles.forEach(tile => {
         if (tile.id === action.id) {
-          tile.status = 'closed';
+          tile.status = `${action.color}-closed`;
           cloneState.opened = [...cloneState.opened, tile];
         };
       });
@@ -56,7 +56,7 @@ const reducer = (state, action) => {
     case 'OPEN-TILES':
       cloneState.tiles.forEach(tile => {
         if (tile.color === action.color) {
-          tile.status = 'opened';
+          tile.status = action.color;
         };
       });
 
@@ -78,7 +78,7 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const checkTile = (id, color) => {
-    dispatch({ type: 'CHECK-TILE', id });
+    dispatch({ type: 'CHECK-TILE', id, color });
 
     state.opened.forEach(tile => {
       if (tile.color === color && tile.id !== id) {
@@ -88,7 +88,9 @@ function App() {
   }
 
   useEffect(() => {
-    if (state.clicks === 2) dispatch({ type: 'NEXT-ROUND' });
+    if (state.clicks === 2 && state.round < 8) {
+      dispatch({ type: 'NEXT-ROUND' });
+    }
   }, [state.clicks])
 
   return (

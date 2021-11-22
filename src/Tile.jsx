@@ -2,11 +2,10 @@ import React from 'react';
 import classes from './Tile.module.css';
 import cn from 'classnames';
 
-const Tile = ({ id, color, status, dispatch, checkTile }) => {
+const Tile = ({ id, color, status, checkTile }) => {
   return (
     <div className={cn(classes.tile, classes[status])}
-     style={{ backgroundColor: color }}
-     onClick={() => checkTile(id, color)}></div>
+      onClick={() => checkTile(id, color)}></div>
   )
 }
 
