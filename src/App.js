@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useReducer } from 'react';
 import './App.css';
 import Tile from './Tile';
@@ -35,6 +36,8 @@ const initialState = {
   clicks: 0,
   round: 1,
   opened: [],
+  count: 0,
+  finish: false,
 };
 
 const reducer = (state, action) => {
@@ -44,30 +47,71 @@ const reducer = (state, action) => {
     case 'CHECK-TILE':
       cloneState.tiles.forEach(tile => {
         if (tile.id === action.id) {
-          tile.status = `${action.color}-closed`;
+          tile.status = action.color;
           cloneState.opened = [...cloneState.opened, tile];
         };
       });
 
       return {
         ...cloneState,
-        clicks: cloneState.clicks + 1
+        clicks: state.clicks + 1,
       };
-    case 'OPEN-TILES':
+    case 'SET-DEFAULT-SETTINGS':
       cloneState.tiles.forEach(tile => {
-        if (tile.color === action.color) {
-          tile.status = action.color;
-        };
+        if (tile.status !== 'disapear') tile.status = 'hidden';
       });
 
       return {
         ...cloneState,
       }
+    case 'SET-DISABLED-STATUS':
+      cloneState.tiles.forEach(tile => {
+        if (tile.id !== state.opened[0].id
+          && tile.id !== state.opened[1].id
+          && tile.status !== 'disapear') {
+          tile.status = 'disabled';
+        }
+      });
+
+      return {
+        ...cloneState,
+      };
+    case 'SET-ENABLE-STATUS':
+      cloneState.tiles.forEach(tile => {
+        if (tile.id !== state.opened[0].id && tile.id !== state.opened[1].id) {
+          tile.status = 'hidden';
+        }
+      });
+
+      return {
+        ...cloneState,
+      }
+    case 'DISAPEAR-TILES':
+      cloneState.tiles.forEach(tile => {
+        if (state.opened[0].id === tile.id || state.opened[1].id === tile.id) {
+          tile.status = 'disapear'
+        }
+      });
+
+      return {
+        ...cloneState,
+        count: cloneState.count + 1,
+      }
     case 'NEXT-ROUND':
+      let isFinish = false;
+      let lastRound = 0;
+
+      if (state.count === 8) {
+        isFinish = true;
+        lastRound = state.round;
+      }
+
       return {
         ...state,
         clicks: 0,
-        round: state.round + 1,
+        round: lastRound || state.round + 1,
+        opened: [],
+        finish: isFinish,
       }
     default:
       return state;
@@ -82,20 +126,27 @@ function App() {
 
     state.opened.forEach(tile => {
       if (tile.color === color && tile.id !== id) {
-        dispatch({ type: 'OPEN-TILES', color });
+        setTimeout(() => {
+          dispatch({ type: 'DISAPEAR-TILES', color });
+        }, 1000)
       }
     });
   }
 
   useEffect(() => {
-    if (state.clicks === 2 && state.round < 8) {
-      dispatch({ type: 'NEXT-ROUND' });
+    if (state.clicks === 2) {
+      dispatch({ type: 'SET-DISABLED-STATUS' });
+      setTimeout(() => {
+        dispatch({ type: 'SET-DEFAULT-SETTINGS' });
+        dispatch({ type: 'NEXT-ROUND' });
+      }, 1500);
     }
   }, [state.clicks])
 
   return (
     <div className='app-wrapper'>
-      <h1>Round {state.round}</h1>
+      {!state.finish && <h1>Round {state.round}</h1>}
+      {state.finish && <h1>Your score: {state.round}</h1>}
       <div className='container'>
         {state.tiles.map((tile) => <Tile
           id={tile.id}

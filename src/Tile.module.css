@@ -9,86 +9,51 @@
   background-color: rgb(170, 170, 170) !important;
 }
 
-.color1 {
-  background-color: #df0b00;
+.disabled {
+  pointer-events: none;
+  background-color: rgb(170, 170, 170);
 }
 
-.color1-closed {
+.color1 {
   background-color: #df0b00;
-  opacity: 0.5;
-  outline: 5px solid rgb(170, 170, 170);
+  pointer-events: none;
 }
 
 .color2 {
   background-color: #e76801;
-}
-
-.color2-closed {
-  background-color: #e76801;
-  opacity: 0.5;
-  outline: 5px solid rgb(170, 170, 170);
+  pointer-events: none;
 }
 
 .color3 {
   background-color: #ffd231;
-}
-
-.color3-closed {
-  background-color: #ffd231;
-  opacity: 0.5;
-  outline: 5px solid rgb(170, 170, 170);
+  pointer-events: none;
 }
 
 .color4 {
   background-color: #008127;
+  pointer-events: none;
 }
-
-.color4-closed {
-  background-color: #008127;
-  opacity: 0.5;
-  outline: 5px solid rgb(170, 170, 170);
-}
-
 
 .color5 {
   background-color: #67c9d6;
+  pointer-events: none;
 }
-
-.color5-closed {
-  background-color: #67c9d6;
-  opacity: 0.5;
-  outline: 5px solid rgb(170, 170, 170);
-}
-
 
 .color6 {
   background-color: #004c94;
+  pointer-events: none;
 }
-
-.color6-closed {
-  background-color: #004c94;
-  opacity: 0.5;
-  outline: 5px solid rgb(170, 170, 170);
-}
-
 
 .color7 {
   background-color: #601f93;
+  pointer-events: none;
 }
-
-.color7-closed {
-  background-color: #601f93;
-  opacity: 0.5;
-  outline: 5px solid rgb(170, 170, 170);
-}
-
 
 .color8 {
   background-color: #a01280;
+  pointer-events: none;
 }
 
-.color8-closed {
-  background-color: #a01280;
-  opacity: 0.5;
-  outline: 5px solid rgb(170, 170, 170);
+.disapear {
+  pointer-events: none;
 }
