@@ -4,3 +4,12 @@
   margin: 10px;
   cursor: pointer;
 }
+
+.hidden {
+  background-color: rgb(170, 170, 170) !important;
+}
+
+.closed {
+  opacity: 0.5;
+  outline: 5px solid rgb(170, 170, 170);
+}
